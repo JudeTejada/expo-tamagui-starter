@@ -1,12 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-
 import { useColorScheme } from 'react-native';
 
-import { Paragraph, Stack, TamaguiProvider, Theme, YStack } from 'tamagui';
+import { TamaguiProvider, Theme } from 'tamagui';
 
 import { useFonts } from 'expo-font';
 
 import config from './tamagui.config';
+import { NavigationContainer } from '@react-navigation/native';
+import { AppNavigator } from './src/navigators';
 export default function App() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -20,16 +20,12 @@ export default function App() {
     return null;
   }
   return (
-    <TamaguiProvider config={config}>
-      <Theme name={colorScheme === 'dark' ? 'dark' : 'light'}>
-        <YStack f={1} jc="center" ai="center" backgroundColor={'$backgroundSoft'}>
-          <Paragraph color="$color" jc="center" fontWeight="InterBold">
-            {colorScheme}
-          </Paragraph>
-
-          <StatusBar style="auto" />
-        </YStack>
-      </Theme>
-    </TamaguiProvider>
+    <NavigationContainer>
+      <TamaguiProvider config={config}>
+        <Theme name={colorScheme === 'dark' ? 'dark' : 'light'}>
+          <AppNavigator />
+        </Theme>
+      </TamaguiProvider>
+    </NavigationContainer>
   );
 }
