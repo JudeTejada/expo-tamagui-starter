@@ -1,5 +1,5 @@
 {
-  "name": "expo-tamagui-template",
+  "name": "expo-tamagui-starter",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -45,6 +45,5 @@
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.5",
     "typescript": "^4.9.4"
-  },
-  "private": true
+  }
 }
