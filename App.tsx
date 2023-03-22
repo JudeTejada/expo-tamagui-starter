@@ -1,19 +1,33 @@
 import { useColorScheme } from 'react-native';
-
-import { TamaguiProvider, Theme } from 'tamagui';
-
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { TamaguiProvider, Theme, Stack, H1, Button } from 'tamagui';
 import { useFonts } from 'expo-font';
 
 import config from './tamagui.config';
-import { NavigationContainer } from '@react-navigation/native';
-import { AppNavigator } from './src/navigators';
+const Appstack = createNativeStackNavigator();
+
+export function MainScreen() {
+  return (
+    <Stack p="$4" f={1} h="100%" ai="center" jc="center">
+      <H1>Welcome!</H1>
+      <Button>Click me</Button>
+    </Stack>
+  );
+}
+
+export function AppNavigator() {
+  return (
+    <Appstack.Navigator>
+      <Appstack.Screen name="Home" component={MainScreen} />
+    </Appstack.Navigator>
+  );
+}
+
 export default function App() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
   });
   if (!loaded) {
